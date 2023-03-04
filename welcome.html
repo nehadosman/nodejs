@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Test</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h1>Welcome {clientName} your entered data as follows</h1>
+    <ul>
+      <li>Mobile Number: {clientNumber}</li>
+      <li>Email: {clientEmail}</li>
+      <li>Address: {clientAddress}</li>
+    </ul>
+
+    <input type="button" value="get-all" onclick="getAll()" />
+    <script>
+      function getAll() {
+        fetch("/get-clients")
+          .then((response) => response.json())
+          .then((data) => {
+            for (let i = 0; i < data.length; i++) {
+              document.write(
+                "<br />",
+                i+1,
+                "<br /> clientName: ",
+                data[i].clientName,
+                "<br /> clientNumber: ",
+                data[i].clientNumber,
+                "<br /> clientEmail: ",
+                data[i].clientEmail,
+                "<br /> clientAddress: ",
+                data[i].clientAddress
+              );
+            }
+            console.log(data);
+            console.log(data);
+          });
+      }
+    </script>
+  </body>
+</html>
