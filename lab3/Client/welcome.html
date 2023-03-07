@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Test</title>
+    <style>
+      body {
+        background-color: #e5f1e5 !important;
+      }
+
+      h1 {
+        margin-top: 2%;
+        color: #5696aa;
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+      }
+
+      #show {
+        width: 55vh;
+        background-color: #f1dbbf;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 15px 40px 40px;
+        border: 1px solid #ccc;
+        margin: 50px auto 0;
+        border-radius: 5px;
+        filter: drop-shadow(6px 6px 6px black);
+      }
+      span {
+        background-color: white;
+      }
+
+      div {
+        margin: 15%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Welcome {clientName} your entered data as follows</h1>
+    <ul id="show">
+      <li>Mobile: {clientNumber}</li>
+      <li>Email: {clientEmail}</li>
+      <li>Address: {clientAddress}</li>
+    </ul>
+    <input type="button" id="btn" value="get-all" onclick="getAll()" />
+    <script>
+      function getAll() {
+        fetch("/userdata")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("dataaaaaaaaaa" + data);
+            for (let i = 0; i < data.length; i++) {
+              document.write(
+                "<br />",
+                i + 1,
+                "<br /> clientName: ",
+                data[i].clientName,
+                "<br /> clientNumber: ",
+                data[i].clientNumber,
+                "<br /> clientEmail: ",
+                data[i].clientEmail,
+                "<br /> clientAddress: ",
+                data[i].clientAddress
+              );
+            }
+            console.log(data);
+            console.log(data);
+          });
+      }
+    </script>
+    <!-- <script src="welcome.js"></script> -->
+  </body>
+</html>
